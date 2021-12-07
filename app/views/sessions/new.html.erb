@@ -1,4 +1,10 @@
-<%= form_for :session, url: login_path do |f| %>
-  <% f.text_field :mail %>
-  <%= f.password_field :password %>
-<% end %>
+<div class="container">
+  <h2>Log in</h2>
+  <%= form_for @user, url: enter_path, local:true do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :mail%><br>
+    <%= f.text_field :mail %><br>
+    <%= f.submit 'Login' %>
+  <% end %>
+</div>

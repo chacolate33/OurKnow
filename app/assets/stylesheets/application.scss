@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+ 
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ 
+ .navbar-toggler {
+   
+ }
+ 
+ @import 'bootstrap';
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';

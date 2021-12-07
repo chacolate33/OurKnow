@@ -1,0 +1,22 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-8">
+      <h2><%= @group.name %>'s Knowledges</h2>
+      <div class="my-3">
+        <% if @knowledegs.present? %>
+          <h5>並び替え</h5>
+          <%= link_to "和訳の五十音順", group_knowledges_path(sort_aiu: "true") %>
+          <br>
+          <%= link_to "新しい順", group_knowledges_path(sort_new: "true") %>
+        <% else %>
+          <p>知識を投稿しましょう。</p>
+        <% end %>
+        <%= render 'index', knowledges: @knowledges %>
+      </div>
+    </div>
+    <div class="col-4">
+      <h2>New Phrase</h2>
+      <%= render 'form', knowledge: @knowledge %>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   post 'signin', to: 'users#create', as: 'users'
   root to: 'homes#top'
-  resources :users, only: [:show, :new, :create]
+  resources :users, only: [:show, :new, :create, :index, :edit, :update]
+  resources :groups do
+    resources :knowledges, only: [:index] 
+  end
+  
+  resources :group_users, only: [:create, :destroy]
   
   get 'login', to: 'sessions#new', as: 'login'
   post 'login', to: 'sessions#create', as: 'enter'

@@ -6,11 +6,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # if User.exists?(name: session_params[:name], mail: session_params[:mail])
-    #   redirect_to user_path
-    # else
-    #   render 'new'
-    # end
 
     if User.exists?(name: session_params[:name], mail: session_params[:mail])
       @user = User.find_by(name: session_params[:name], mail: session_params[:mail])  

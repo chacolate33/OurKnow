@@ -1,1 +1,27 @@
-<h1>My page</h1>
+<div class="container my-3">
+  <% if @user == @current_user %>
+    <h2>Your Page</h2>
+  <% else %>
+    <h2><%= @user.name %>'s Page</h2>
+  <% end %>
+  
+  <%= @user.name %>
+  
+  <div class="my-3">
+    <% if @user == current_user %>
+      <%= link_to "Edit", edit_user_path(@user), class: 'btn btn-primary' %>
+      <%= link_to "Make new group", new_group_path, class: 'btn btn-success' %>
+    <% end %>
+  </div>
+  
+  <% if @user == current_user %>
+    <h2>Your Group</h2>
+  <% else %>
+    <h2><%= @user.name %>'s Group</h2>
+  <% end %>
+  <% if @groups.present?%>
+    <%= render 'groups/index', groups: @groups %>
+  <% else %>
+    <p>グループを作成しましょう。</p>
+  <% end %>
+</div>

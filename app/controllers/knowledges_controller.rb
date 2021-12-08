@@ -25,7 +25,7 @@ class KnowledgesController < ApplicationController
   end
 
   def show
-    # 表示すべきphraseがあればページを表示
+    # 表示すべきknowledgeがあればページを表示
     if Knowledge.exists?(params[:id])
       @Knowledge = Knowledge.find(params[:id])
     end

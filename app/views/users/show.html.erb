@@ -5,9 +5,23 @@
     <h2><%= @user.name %>'s Page</h2>
   <% end %>
   
-  <%= @user.name %>
+  <div class="text-center">
+    <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: 'no_image.jpg', size: "80x80"%>
+     <table class="my-3 center">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>Introduction</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   
-  <div class="my-3">
+  <div class="my-3 text-center">
     <% if @user == current_user %>
       <%= link_to "Edit", edit_user_path(@user), class: 'btn btn-primary' %>
       <%= link_to "Make new group", new_group_path, class: 'btn btn-success' %>

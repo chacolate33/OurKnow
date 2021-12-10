@@ -1,0 +1,36 @@
+<div class="container my-3">
+  <!--投稿者-->
+  <div class="my-3">
+    <%= link_to user_path(@knowledge.user) do %>
+      <%= attachment_image_tag @knowledge.user, :image, format: 'jpeg', fallback: 'no_image.jpg', size: "60x60" %>
+      <%= @knowledge.user.name %>
+    <% end %>
+  </div>
+
+  <!--知識-->
+  <div class="container border post py-2 pl-4 my-3">
+    <%= @knowledge.content %>
+    <div class="border-top" id="knowledge_<%= @knowledge.id %>">
+      <span class="comments-count"> コメント<%= @knowledge.comments.count %>件</span>
+      <% if @knowledge.user_id == current_user.id %>
+        <%= link_to "Edit", edit_group_knowledge_path(id: @knowledge.id), class: 'btn btn-success' %>
+        <%= link_to "Delete", group_knowledge_path(id: @knowledge.id), method: :delete, class: 'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+  <!--コメント一覧・フォーム-->
+  <div>
+    <h4>Comment</h4>
+    <%= form_with url: group_knowledge_comments_path(knowledge_id: @knowledge.id) do |f| %>
+      <div class="form-group">
+        <%= f.text_area :content, class: 'form-control text-area' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-success' %>
+      </div>
+    <% end %>
+    <div class="comments">
+    <%= render 'comments/index', comments: @comments %>
+    </div>
+  </div>
+</div>

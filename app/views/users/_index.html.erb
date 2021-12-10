@@ -1,0 +1,34 @@
+<% if users.present? %>
+  <div class="table-responsive">
+    <table class="table-hover text-nowrap center">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Introduction</th>
+          <th>Button</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% users.each do |user|%>
+          <tr>
+            <td>
+              <%= link_to user_path(user) do %>
+                <%= attachment_image_tag user, :image, format: 'jpeg', fallback: 'no_image.jpg', size: "60x60"%>
+                <%= user.name %>
+              <% end %>
+            </td>
+        
+            <td>
+              <% if user.introduction.present? %>
+                <%= user.introduction.truncate(30) %>
+              <% end %>
+            </td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

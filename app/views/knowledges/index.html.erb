@@ -8,8 +8,6 @@
           <%= link_to "和訳の五十音順", group_knowledges_path(sort_aiu: "true") %>
           <br>
           <%= link_to "新しい順", group_knowledges_path(sort_new: "true") %>
-        <% else %>
-          <p>知識を投稿しましょう。</p>
         <% end %>
         <%= render 'index', knowledges: @knowledges %>
       </div>

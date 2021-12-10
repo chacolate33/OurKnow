@@ -27,7 +27,8 @@ class KnowledgesController < ApplicationController
   def show
     # 表示すべきknowledgeがあればページを表示
     if Knowledge.exists?(params[:id])
-      @Knowledge = Knowledge.find(params[:id])
+      @knowledge = Knowledge.find(params[:id])
+      @comments = @knowledge.comments
     end
   end
 
@@ -44,7 +45,7 @@ class KnowledgesController < ApplicationController
   end
 
   def update
-    @knowledge = knowledge.find(params[:id])
+    @knowledge = Knowledge.find(params[:id])
     @group = Group.find(params[:group_id])
     @knowledge.update(knowledge_params)
     if @knowledge.save
@@ -72,7 +73,7 @@ class KnowledgesController < ApplicationController
 
   private
 
-  def phrase_params
+  def knowledge_params
     params.permit(:content)
   end
 end

@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
+  
   get 'homes/home'
-  # get 'sessions/new'
-  # get 'sessions/create'
-  # get 'sessions/destroy'
   get 'signup', to: 'users#new', as: 'signup'
   post 'signin', to: 'users#create', as: 'users'
   root to: 'homes#top'
+  get 'homes/myknow' => 'homes#myknow', as: 'myknow'
   resources :users, only: [:show, :new, :create, :index, :edit, :update]
   resources :groups do
-    resources :knowledges, only: [:index] 
+    resources :applies, only: [:index, :create, :destroy]
+    resources :knowledges, except: [:new] do
+      resource :bookmarks, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
   end
   
   resources :group_users, only: [:create, :destroy]

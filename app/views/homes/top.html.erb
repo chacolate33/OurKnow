@@ -1,1 +1,20 @@
-<h1>homes/top</h1>
+<div class="container">
+  <div class="topic text-center my-5">
+    <p style="line-height: 3rem;">OurKnowは知識を共有するサイトです。<br>
+    仲間と様々な知識を深めましょう。<br>
+    まずはMy Pageからグループを作って、投稿してみましょう。</p>
+  </div>
+
+  <div class="container select">
+    <div class="container d-md-flex">
+      <% if @current_user %>
+        <div><%= link_to groups_path, class:'link' do %><p>Group <i class="fas fa-users"></i></p><% end %></div>
+        <div><%= link_to user_path(current_user.id), class:"link" do %><p>My Page <i class="fas fa-user"></i></p><% end %></div>
+        <div><%= link_to logout_path, method: :delete, class:"link" do %><p>Log out <i class="fas fa-sign-out-alt"></i></p><% end %></div>
+      <% else %>
+        <div class="new"><%= link_to signup_path, class:"link" do %><p>Sign up <i class="fas fa-user-plus"></i></p><% end %></div>
+        <div class="new"><%= link_to login_path, class:"link" do %><p>Log in <i class="fas fa-sign-in-alt"></i></p><% end %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

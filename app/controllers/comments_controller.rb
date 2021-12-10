@@ -6,9 +6,11 @@ class CommentsController < ApplicationController
     @comment.knowledge_id = @knowledge.id
     if @comment.save
       @comments = Comment.where(knowledge_id: @knowledge.id).page(params[:page]).per(20)
+      redirect_to request.referer
     else
       @knowledge = Knowledge.find_by(id: @knowledge.id)
       @comments = Comment.where(knowledge_id: @knowledge.id).page(params[:page]).per(20)
+      render "knowledges/show"
     end
   end
 
@@ -17,6 +19,7 @@ class CommentsController < ApplicationController
     @comments = Comment.where(knowledge_id: @knowledge.id).page(params[:page]).per(20)
     @comment = Comment.find(params[:id])
     @comment.destroy
+    render 'knowledges/show'
   end
 
   private

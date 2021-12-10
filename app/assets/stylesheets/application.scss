@@ -19,10 +19,24 @@
    padding: 0;
    box-sizing: border-box;
  }
- 
- .navbar-toggler {
-   
- }
+
+// table
+
+.center {
+  margin: 0 auto;
+}
+
+.middle {
+  vertical-align: middle;  
+}
+
+table td{
+  padding: 3px 10px;
+}
+
+table th {
+  text-align: center;
+}
  
  @import 'bootstrap';
  @import 'font-awesome-sprockets';

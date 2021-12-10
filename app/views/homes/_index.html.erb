@@ -1,23 +1,26 @@
+<!--ブックマークリスト用の部分テンプレート-->
 <% knowledges.each do |knowledge| %>
   <div class="container border post py-2 pl-4 my-3">
     <div class="container">
       <div class="row">
-        <!--ブックマーク-->
         <div class="col-1">
+        <!--ブックマーク-->
           <%= render 'bookmarks/button', knowledge: knowledge %>
         </div>
         <div class="col-11">
-          <h3><%= knowledge.content.truncate(30) %></h3>
+        <!--英語と訳-->
+          <%= link_to group_knowledge_path(group_id: knowledge.group_id, id: knowledge.id) do %>
+            <h3 style="color: #212529;"><%= knowledge.content %></h3>
+          <% end %>
         </div>
       </div>
     </div>
     <div>
-      <%= link_to "Details", group_knowledge_path(group_id: knowledge.group_id, id: knowledge.id) %>
-      <% if knowledge.user_id == @current_user.id %>
+      <span>知識<%= knowledges.count %>件</span>
+      <% if knowledge.user_id == current_user.id %>
         <%= link_to "Edit", edit_group_knowledge_path(group_id: knowledge.group_id, id: knowledge.id), class: 'btn btn-success' %>
         <%= link_to "Delete", group_knowledge_path(group_id: knowledge.group_id, id: knowledge.id), method: :delete, class: 'btn btn-danger' %>
       <% end %>
     </div>
   </div>
 <% end %>
-<%= paginate knowledges %>

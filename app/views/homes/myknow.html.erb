@@ -1,0 +1,8 @@
+<div class="container my-3">
+  <h2>Bookmark List</h2>
+  <% if @knowledges.present? %>
+    <%= render 'index', knowledges: @knowledges %>
+  <% else %>
+    <p>知識を登録して、効率よく学習を進めましょう。</p>
+  <% end %>
+</div>

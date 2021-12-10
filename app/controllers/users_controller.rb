@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_action :require_sign_in! 
+  skip_before_action :require_sign_in!, only: [:new, :create]
   def new
     @user = User.new
   end
@@ -24,6 +24,22 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  def edit 
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    if @user.save
+      flash[:notice] = "You have updated your infomation successfully."
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
+  end
+
   
   private
     def user_params

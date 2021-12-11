@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def sign_out
     @current_user = nil
   end

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :knowledges, dependent: :destroy
   has_many :applies, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :favoites, dependent: :destroy
 
    attachment :image
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'favorites/create'
+  get 'favorites/destroy'
   get 'homes/home'
   get 'signup', to: 'users#new', as: 'signup'
   post 'signin', to: 'users#create', as: 'users'

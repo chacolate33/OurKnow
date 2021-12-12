@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Log in</h2>
-  <%= form_for @user, url: enter_path, local:true do |f| %>
+  <%= form_with url: enter_path do |f| %>
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
     <%= f.label :mail%><br>

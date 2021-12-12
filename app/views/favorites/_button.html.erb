@@ -1,0 +1,13 @@
+<% if knowledge.favorited_by?(current_user) %>
+  <span>
+    <%= link_to group_knowledge_favorites_path(knowledge_id: knowledge.id), class: 'underline', method: :delete do %>
+      <i class="fas fa-heart text-danger"><%= knowledge.favorites.count %></i>
+    <% end %>
+  </span>
+<% else %>
+  <span>
+    <%= link_to group_knowledge_favorites_path(knowledge_id: knowledge.id), class: 'underline', method: :post do %>
+      <i class="far fa-heart text-danger"><%= knowledge.favorites.count %></i>
+    <% end %>
+  </span>
+<% end %>

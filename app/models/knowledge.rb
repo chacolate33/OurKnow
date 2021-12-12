@@ -10,10 +10,10 @@ class Knowledge < ApplicationRecord
   
   # current_userがブックマークしているかそうでないかでviewを変える
   def bookmarked_by?(user)
-    bookmarks.where(user_id: user).exists?
+    bookmarks.where(user_id: user.id).exists?
   end
   
   def favorited_by?(user)
-    favorites.where(user_id: user).exists?
+    favorites.where(user_id: user.id).exists?
   end
 end

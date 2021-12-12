@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     render action: 'new'
   end
   def session_params
-    params.require(:user).permit(:name, :mail)
+    params.permit(:name, :mail)
   end
 
 end

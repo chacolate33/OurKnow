@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create', as: 'users'
   root to: 'homes#top'
   get 'homes/myknow' => 'homes#myknow', as: 'myknow'
-  resources :users, only: [:show, :new, :create, :index, :edit, :update]
+  resources :users, only: [:show, :new, :create, :index, :edit, :update] do
+    get 'followers' => 'relationships#followers', as: 'followers'
+    get 'followings' => 'relationships#followings', as: 'followings'
+    resource :relationships, only: [:create, :destroy]
+  end
   resources :groups do
     resources :applies, only: [:index, :create, :destroy]
     resources :knowledges, except: [:new] do

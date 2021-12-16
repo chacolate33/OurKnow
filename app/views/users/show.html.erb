@@ -27,6 +27,37 @@
         </tr>
       </tbody>
     </table>
+    <div class="my-3 ", style="display: flex; justify-content: center;">
+      <% if @user != current_user %>
+       　<!--フォロー登録のボタン-->
+        <div class="text-center">
+          <% if current_user.following?(@user) %>
+          　<%= link_to "Unfolow", user_relationships_path(@user), method: :delete, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to "Follow", user_relationships_path(@user), method: :post, class: 'btn btn-primary'%>
+          <% end %>
+        </div>
+      　<!--DMのためのボタン-->
+      　<div>
+          <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
+            <% if @isRoom == true %>
+              <a href="/rooms/<%= @roomId %>" class="btn btn-primary">Chat</a>
+            <% else %>
+              <!--Chatボタンを初めて押してRoomを作るとき、その情報をroom/createに送信する-->
+              <%= form_for @room do |f| %>
+                <!--最初にChatボタンを押した人のidがRoomのuser_idになる-->
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= fields_for @entry do |e| %>
+                <!--Room作成と同時に相手ユーザー情報もEntryに保存するため、送信-->
+                  <%= e.hidden_field :user_id, value: @user.id %>
+                <% end %>
+                <%= f.submit "Chat", class: 'btn btn-primary user-show-chat'%>
+              <% end %>
+            <% end %>
+          <% end %>
+      　</div>
+      <% end %>
+    </div>
   </div>
   
   <div class="my-3 text-center">

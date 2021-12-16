@@ -6,7 +6,6 @@
           <th>Name</th>
           <th>Introduction</th>
           <th>Button</th>
-          <th>Status</th>
         </tr>
       </thead>
       
@@ -25,6 +24,17 @@
                 <%= user.introduction.truncate(30) %>
               <% end %>
             </td>
+            
+            <td>
+               <% if user != current_user %>
+                <% if current_user.following?(user) %>
+                  <%= link_to "Unfolow", user_relationships_path(user), method: :delete, class: 'btn btn-danger' %>
+                <% else %>
+                  <%= link_to "Follow", user_relationships_path(user), method: :post, class: 'btn btn-primary'%>
+                <% end %>
+              <% end %>
+            </td>
+            
 
           </tr>
         <% end %>

@@ -27,4 +27,3 @@ class GroupUsersController < ApplicationController
     params.permit(:group_id, :user_id, :apply_id)
   end
 end
-end
